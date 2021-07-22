@@ -15,59 +15,33 @@ public class CustomStack {
         
         int currentItemFrequency = 0;
         
-        if( !frequencyCounter.ContainsKey(val) ){
-            frequencyCounter.Add(val, 1);
-            currentItemFrequency = 1;
-            
+        if( !frequencyCounter.ContainsKey(val) ) {
+            frequencyCounter.Add(val, currentItemFrequency);
         }
-        else {
-            frequencyCounter[val] = frequencyCounter[val] + 1;
-            currentItemFrequency = frequencyCounter[val];
-        }
+        frequencyCounter[val] = frequencyCounter[val] + 1;
+        currentItemFrequency = frequencyCounter[val];
         
-        if( currentItemFrequency > maxFrequencyCount  ) {
-                
+        
+        if( currentItemFrequency > maxFrequencyCount  )
             maxFrequencyCount = currentItemFrequency;
-        }
         
         if( !stack.ContainsKey(currentItemFrequency) )
-                stack.Add(currentItemFrequency, new Stack<int>());
+            stack.Add(currentItemFrequency, new Stack<int>());
 
         stack[currentItemFrequency].Push(val);
-        
-        // Print($"push({val})");
     }
     
     public int Pop() {
         
-        int item = stack[maxFrequencyCount].Pop();
-        
+        int item = stack[maxFrequencyCount].Pop();   
         frequencyCounter[item] -= 1;    
         
-        if( frequencyCounter[item] == 0) {
+        if( frequencyCounter[item] == 0)
             frequencyCounter.Remove(item);
-        }
         
-        if( stack[maxFrequencyCount].Count == 0 ) {
-            stack.Remove(maxFrequencyCount);
-            maxFrequencyCount--;
-        }
-        
-        // Print($"pop({item})");
-        
-        return item;
-        
-    }
-    
-    private void Print(string action) {
-        
-        string str = $"{action} Max = {maxFrequencyCount} , ";
-        Console.WriteLine(str);
-        foreach(KeyValuePair<int,Stack<int>> kv in stack) {
-            str = $" Index => {kv.Key} , CountOfItems = {kv.Value.Count}";
-            Console.WriteLine(str);
-        }
-        
-        Console.WriteLine("");
+        if( stack[maxFrequencyCount].Count == 0 )
+            stack.Remove(maxFrequencyCount--);
+   
+        return item;     
     }
 }
