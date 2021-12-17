@@ -1,3 +1,3 @@
 # DataStructure
 
-##### [Question here](https://github.com/alphanse82/DataStructure/blob/master/ComputeShotSequenceLength.cs)
+##### [Two Sum] (https://leetcode.com/problems/two-sum) -> [Solution](https://github.com/alphanse82/DSA-LeetCode/blob/main/C%23/1.Two-Sum.cs)
